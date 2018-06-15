@@ -1,0 +1,79 @@
+.toggleedit {
+    margin: auto;
+    display: flex;
+    background: @ch-gray-lightest;
+    border: 1px solid @ch-gray-light;
+    border-radius: 20px;
+    cursor: pointer;
+
+    .icon {
+        display: block;
+        transition: all .2s @main-animation;
+        animation: stable .2s ease-out forwards;
+    }
+    
+
+    &-switcher {
+        .ffRobotoMedium();
+        background: transparent;
+        border: none;
+        padding: 7px 22px;
+        color: @ch-gray-darker;
+        border-radius: 20px;
+        cursor: pointer;
+
+        &__active {
+            border: 1px solid @ch-gray-light;
+            box-shadow: 0px 0px 10px 0px #e1e3fa;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                animation-delay: .3s;
+                animation: fill .2s @main-animation forwards;
+            }
+
+            &:last-of-type {
+                .icon {                
+                    animation: .3s ease-in rotate forwards;
+                }
+            }
+        }
+
+        @keyframes fill {
+            0% {
+                width: 0;
+                height: 0;
+                background: transparent;
+            }
+            100% {           
+                width: 200%;
+                height: 200%;
+                background: #fff;
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0);
+            }       
+            100% {
+                transform: rotate(-45deg);
+            }
+        }
+        @keyframes stable {
+            from {
+                transform: rotate(-45deg);
+            }
+            to {
+                transform: rotate(0);
+            }
+        }
+    }
+}
